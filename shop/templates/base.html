@@ -50,38 +50,7 @@
 
     <div class="container">
 
-        <div class="row">
-            <h2>Browse our departments</h2>
-            <p>Search through our latest collections to find the ideal addition to your wardrobe.</p>
-        </div>
-
-        <div class="row">
-            {% for department in department_list %}
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" data-anijs="if: DOMContentLoaded, on: document, do: bounceIn animated">
-                    <img src="{{ department.image_url }}" alt="Eyewear" data-anijs="if: mouseover, do: tada animated">
-                    <div class="caption">
-                        <h4>{{ department.name }}</h4>
-                        <p><a href="#" class="btn btn-primary" role="button">Start shopping</a></p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            
-            <div class='col-sm-6 col-md-4'>
-                <div class='thumbnail' data-anijs="if: DOMContentLoaded, on: document, do: bounceIn animated">
-                    <img src="http://i.imgur.com/s069LKJl.jpg" alt="Eyewear" data-anijs="if: mouseover, do: tada animated">
-                    <div class="caption">
-                        <h4>Admin</h4>
-                        <p><a href="{% url 'create-department' %}" class="btn btn-primary" role="button">Add a Department</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <p>Images courtesy of <a href='http://www.gratisography.com/'>Gratisography</a></p>
-        </div>
+        {% block content %}{% endblock %}
 
     </div>
 
