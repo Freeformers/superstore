@@ -12,7 +12,7 @@
             <div class="caption">
                 <h4>{{ product.name }}</h4>
                 <p>{{ product.description }}</p>
-                <p><a href="{% url 'create-product' %}" class="btn btn-primary" role="button">Add a Product</a></p>
+                <p><a href="{% url 'shop-product' pk=product.pk %}" class="btn btn-primary" role="button">Get Details</a></p>
             </div>
         </div>
     </div>

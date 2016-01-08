@@ -31,3 +31,10 @@ class CreateProduct(CreateView):
     
     def get_success_url(self):
         return reverse_lazy('shop-department', kwargs={'pk': self.object.department_id})
+        
+        
+class ShopProduct(DetailView):
+    model = Product
+    
+    def post(request, *args, **kwargs):
+        raise Exception()

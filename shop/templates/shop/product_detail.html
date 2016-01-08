@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<div class="page-header">
+    <h1>{{ product.name }} <small><a href='{% url "shop-department" pk=product.department_id %}'>Back to {{ product.department.name }}</a></small></h1>
+</div>
+
+<div class="row">
+    <div class='col-sm-6 col-md-8'>
+        <img class='img-responsive' src='{{ product.image_url }}' />
+
+        <p>{{ product.id }} - {{ product.name|upper }} - {{ product.get_colour_display|upper }}</p>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <p class="lead">{{ product.description }}</p>
+        <form action="" method="post">{% csrf_token %}
+            <p>Available today for only £29.99.</p>
+            <p>
+                <input class='btn btn-default' type="submit" value="Purchase" />
+            </p>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

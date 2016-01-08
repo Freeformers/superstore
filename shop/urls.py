@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^create-department$', views.CreateDepartment.as_view(), name='create-department'),
     url(r'^departments/(?P<pk>\d+)$', views.ShopDepartment.as_view(), name='shop-department'),
     url(r'^create-product$', views.CreateProduct.as_view(), name='create-product'),
+    url(r'^products/(?P<pk>\d+)$', views.ShopProduct.as_view(), name='shop-product'),
 ]
