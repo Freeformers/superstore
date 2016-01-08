@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <h1>{{ department.name }} <small><a href='{% url "home" %}'>Back to the home page</a></small></h1>
+</div>
+
+<div class="js-masonry" data-masonry-options='{ "itemSelector": ".item", "columnWidth": ".item" }'>
+    {% for product in department.products.all %}
+    <div class="item col-xs-6 col-sm-4 col-lg-3">
+        <div class="thumbnail" data-anijs="if: DOMContentLoaded, on: document, do: bounceIn animated">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" data-anijs="if: mouseover, do: tada animated">
+            <div class="caption">
+                <h4>{{ product.name }}</h4>
+                <p>{{ product.description }}</p>
+                <p><a href="{% url 'create-product' %}" class="btn btn-primary" role="button">Add a Product</a></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    <div class='item col-xs-6 col-sm-4 col-lg-3'>
+        <div class='thumbnail' data-anijs="if: DOMContentLoaded, on: document, do: bounceIn animated">
+            <img src="http://i.imgur.com/s069LKJl.jpg" alt="Admin" data-anijs="if: mouseover, do: tada animated">
+            <div class="caption">
+                <h4>Admin</h4>
+                <p>Add products to the store.</p>
+                <p><a href="{% url 'create-product' %}" class="btn btn-primary" role="button">Add a Product</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

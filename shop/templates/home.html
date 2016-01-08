@@ -62,7 +62,7 @@
                     <img src="{{ department.image_url }}" alt="Eyewear" data-anijs="if: mouseover, do: tada animated">
                     <div class="caption">
                         <h4>{{ department.name }}</h4>
-                        <p><a href="#" class="btn btn-primary" role="button">Start shopping</a></p>
+                        <p><a href="{{ department.get_absolute_url }}" class="btn btn-primary" role="button">Start shopping</a></p>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
             
             <div class='col-sm-6 col-md-4'>
                 <div class='thumbnail' data-anijs="if: DOMContentLoaded, on: document, do: bounceIn animated">
-                    <img src="http://i.imgur.com/s069LKJl.jpg" alt="Eyewear" data-anijs="if: mouseover, do: tada animated">
+                    <img src="http://i.imgur.com/s069LKJl.jpg" alt="Admin" data-anijs="if: mouseover, do: tada animated">
                     <div class="caption">
                         <h4>Admin</h4>
                         <p><a href="{% url 'create-department' %}" class="btn btn-primary" role="button">Add a Department</a></p>

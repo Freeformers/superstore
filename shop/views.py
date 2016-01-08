@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 from .models import Department, Product, Review
 
@@ -16,4 +16,14 @@ class DepartmentList(ListView):
 class CreateDepartment(CreateView):
     model = Department
     fields = ['name', 'image_url']
+    success_url = '/'
+    
+    
+class ShopDepartment(DetailView):
+    model = Department
+    
+    
+class CreateProduct(CreateView):
+    model = Product
+    fields = ['name', 'description', 'image_url', 'department', 'colour']
     success_url = '/'
