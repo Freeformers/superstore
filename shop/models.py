@@ -32,6 +32,9 @@ class Product(models.Model):
     ]
     
     colour = models.IntegerField(choices=COLOURS, null=True, blank=True)
+    
+    def __unicode__(self):
+        return self.name
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
