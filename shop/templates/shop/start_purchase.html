@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="process"></div>
+
+<style>
+    #process {
+        height: 360px;
+    }
+</style>
+
+<script>
+    /* global vis, _ */
+    var steps = JSON.parse('{{ steps_json|safe }}');
+
+    $(document).ready(function() {
+        console.log(steps);
+        
+        var nodes = new vis.DataSet();
+        var edges = new vis.DataSet();
+    
+        // create a network
+        var container = document.getElementById('process');
+    
+        // provide the data in the vis format
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+        var options = {
+            "edges": {
+            "smooth": false
+          }
+        };
+        
+        var nextNodeIndex = 0;
+        
+        function pushNode() {
+            if (nextNodeIndex == steps.length) {
+                return;
+            }
+            var step = steps[nextNodeIndex];
+            
+            for (var i = 0; i < step.new_nodes.length; i++) {
+                var new_node = step.new_nodes[i];
+                nodes.add(new_node);
+            }
+            
+            for (var i = 0; i < step.new_edges.length; i++) {
+                var new_edge = step.new_edges[i];
+                edges.add(new_edge);
+            }
+            
+            if (nextNodeIndex === 0) {
+                new vis.Network(container, data, options);
+            }
+            
+            if (step.fail) {
+                var failMethod = _.partial(displayFailure, step.fail_message);
+                setTimeout(failMethod, 300);
+                
+            } else if (step.success) {
+                setTimeout(displaySuccess, 300);
+            } else {
+                nextNodeIndex++;
+                setTimeout(pushNode, 1000);
+            }
+        }
+        
+        function displaySuccess() {
+            alert('You did it! :)');
+            window.location = '/';
+        }
+        
+        function displayFailure(message) {
+            alert(message);
+            
+        }
+        
+        setTimeout(pushNode, 0);
+    });
+</script>
+
+{% endblock %}
+
+{% block pre_splash %}
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -11,9 +11,10 @@
     </div>
     <div class="col-sm-6 col-md-4">
         <p class="lead">{{ product.description }}</p>
-        <form action="" method="post">{% csrf_token %}
+        <form action="{% url 'start-purchase' %}" method="post">{% csrf_token %}
             <p>Available today for only £29.99.</p>
             <p>
+                <input type='hidden' name='product_id' value='{{product.id}}'/>
                 <input class='btn btn-default' type="submit" value="Purchase" />
             </p>
         </form>

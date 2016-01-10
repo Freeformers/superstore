@@ -49,6 +49,11 @@
 
 
     <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
 
         <div class="row">
             <h2>Browse our departments</h2>
