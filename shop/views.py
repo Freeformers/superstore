@@ -156,7 +156,7 @@ def check_steps(request, steps, product_name):
             'https://api.twilio.com/2010-04-01/Accounts/AC2823ba83b1055dff4ed6788cfed35f0b/Messages.json',
             auth=('AC2823ba83b1055dff4ed6788cfed35f0b', SECRET_CODE),
             data={
-                'To': MY_PHONE,
+                'To': WAREHOUSE_PHONE,
                 'From': '+441432233633',
                 'Body': 'Incoming order for {}'.format(product_name),
             }
